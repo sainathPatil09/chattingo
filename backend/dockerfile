@@ -1,0 +1,51 @@
+# -------------------
+# Stage 1: Maven build environment
+# -------------------
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+# Copy pom.xml and download dependencies first (for caching)
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+# Copy source code and build the jar
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+
+# -------------------
+# Stage 2: Extract built application
+# -------------------
+FROM eclipse-temurin:17-jre-alpine AS extract
+
+WORKDIR /app
+
+# Copy jar from previous stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Optional: explode jar (faster startup, smaller layers)
+RUN java -Djarmode=layertools -jar app.jar extract
+
+
+# -------------------
+# Stage 3: JRE runtime
+# -------------------
+FROM eclipse-temurin:17-jre-alpine AS production
+
+WORKDIR /app
+
+# Copy layers from extract stage
+COPY --from=extract /app/dependencies/ ./
+COPY --from=extract /app/spring-boot-loader/ ./
+COPY --from=extract /app/snapshot-dependencies/ ./
+COPY --from=extract /app/application/ ./
+
+# Copy .env (optional, you can also use docker-compose or k8s secrets)
+# COPY .env .env
+
+# Expose backend port
+EXPOSE 8080
+
+# Run Spring Boot app
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
