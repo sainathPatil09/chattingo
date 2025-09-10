@@ -1,84 +1,11 @@
-# version: "3.9"
-
-# services:
-#   db:
-#     image: mysql:8.1
-#     container_name: chattingo-db
-#     env_file:
-#       - ./backend/.env         # <-- load same env file for db
-#     ports:
-#       - "3307:3306"
-#     volumes:
-#       - db-data:/var/lib/mysql
-#     healthcheck:
-#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}"]
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
-#       start_period: 20s
-
-#   backend:
-#     build:
-#       context: ./backend
-#       dockerfile: Dockerfile
-#     image: wiings09/chattingo-backend:${TAG}
-#     container_name: chattingo-backend
-#     env_file:
-#       - ./backend/.env
-#     ports:
-#       - "8000:8000"
-#     depends_on:
-#       - db
-
-#   frontend:
-#     build:
-#       context: ./frontend
-#       dockerfile: Dockerfile
-#     image: wiings09/chattingo-frontend:${TAG}
-#     container_name: chattingo-frontend
-#     environment:
-#       - REACT_APP_API_URL=http://72.60.111.17.nip.io:8000
-#     ports:
-#       - "80:80"
-
-# volumes:
-#   db-data:
-
-
-
 version: "3.9"
 
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    container_name: nginx-proxy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /etc/nginx/certs
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-
-  letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: nginx-proxy-le
-    restart: unless-stopped
-    environment:
-      NGINX_PROXY_CONTAINER: nginx-proxy
-    volumes:
-      - /etc/nginx/certs
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-
   db:
     image: mysql:8.1
     container_name: chattingo-db
     env_file:
-      - ./backend/.env
+      - ./backend/.env         # <-- load same env file for db
     ports:
       - "3307:3306"
     volumes:
@@ -98,11 +25,10 @@ services:
     container_name: chattingo-backend
     env_file:
       - ./backend/.env
-    expose:
-      - "8000"
-    environment:
-      - VIRTUAL_HOST=api.72.60.111.17.nip.io
-      - VIRTUAL_PORT=8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
 
   frontend:
     build:
@@ -111,10 +37,9 @@ services:
     image: wiings09/chattingo-frontend:${TAG}
     container_name: chattingo-frontend
     environment:
-      - REACT_APP_API_URL=https://72.60.111.17.nip.io/api
-      - VIRTUAL_HOST=72.60.111.17.nip.io
-    expose:
-      - "80"
+      - REACT_APP_API_URL=http://72.60.111.17.nip.io:8000
+    ports:
+      - "80:80"
 
 volumes:
   db-data:
