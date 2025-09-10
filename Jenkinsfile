@@ -71,7 +71,7 @@ pipeline {
                         env.FRONTEND_IMAGE,
                         env.BACKEND_IMAGE,
                         finalTag,
-                        "http://72.60.111.17.nip.io", // API URL (could also come from Jenkins parameter)
+                        "https://72.60.111.17.nip.io", // API URL (could also come from Jenkins parameter)
                         env.FRONTEND_DIR,
                         env.BACKEND_DIR
                     )
