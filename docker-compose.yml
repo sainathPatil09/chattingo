@@ -37,7 +37,7 @@ services:
     image: wiings09/chattingo-frontend:${TAG}
     container_name: chattingo-frontend
     environment:
-      - REACT_APP_API_URL=/api
+      - REACT_APP_API_URL=http://72.60.111.17.nip.io:8000
     ports:
       - "80:80"
 
