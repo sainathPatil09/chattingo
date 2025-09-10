@@ -41,8 +41,7 @@ COPY --from=extract /app/spring-boot-loader/ ./
 COPY --from=extract /app/snapshot-dependencies/ ./
 COPY --from=extract /app/application/ ./
 
-# Copy .env (optional, you can also use docker-compose or k8s secrets)
-# COPY .env .env
+
 
 # Expose backend port
 EXPOSE 8080
