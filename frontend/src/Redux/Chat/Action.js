@@ -4,7 +4,7 @@ import { CREATE_CHAT, CREATE_GROUP, GET_USERS_CHAT } from "./ActionType";
 // Action creator for creating a single chat
 export const createChat = (chatData) => async (dispatch) => {
   try {
-    const res = await fetch(`${BASE_API_URL}/chats/single`, {
+    const res = await fetch(`${BASE_API_URL}/api/chats/single`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export const createChat = (chatData) => async (dispatch) => {
 // Action creator for creating a group chat
 export const createGroupChat = (chatData) => async (dispatch) => {
   try {
-    const res = await fetch(`${BASE_API_URL}/chats/group`, {
+    const res = await fetch(`${BASE_API_URL}/api/chats/group`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const createGroupChat = (chatData) => async (dispatch) => {
 // Action creator for getting users in a chat
 export const getUsersChat = (chatData) => async (dispatch) => {
   try {
-    const res = await fetch(`${BASE_API_URL}/chats/user`, {
+    const res = await fetch(`${BASE_API_URL}/api/chats/user`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
