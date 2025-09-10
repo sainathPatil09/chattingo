@@ -4,7 +4,7 @@ import { CREATE_NEW_MESSAGE, GET_ALL_MESSAGE } from "./ActionType.js";
 // Action creator for creating a new message
 export const createMessage = (messageData) => async (dispatch) => {
   try {
-    const res = await fetch(`${BASE_API_URL}/api/messages/create`, {
+    const res = await fetch(`${BASE_API_URL}/messages/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export const getAllMessages = (reqData) => async (dispatch) => {
   console.log("Came inside get all messages");
 
   try {
-    const res = await fetch(`${BASE_API_URL}/api/messages/${reqData.chatId}`, {
+    const res = await fetch(`${BASE_API_URL}/messages/${reqData.chatId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

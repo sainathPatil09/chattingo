@@ -61,7 +61,7 @@ export const login = (data) => async (dispatch) => {
 // Action creator for fetching the current user's data
 export const currentUser = (token) => async (dispatch) => {
   try {
-    const res = await fetch(`${BASE_API_URL}/api/users/profile`, {
+    const res = await fetch(`${BASE_API_URL}/users/profile`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const currentUser = (token) => async (dispatch) => {
 export const searchUser = (data) => async (dispatch) => {
   try {
     console.log(data);
-    const res = await fetch(`${BASE_API_URL}/api/users/${data.keyword}`, {
+    const res = await fetch(`${BASE_API_URL}/users/${data.keyword}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +102,7 @@ export const searchUser = (data) => async (dispatch) => {
 // Action creator for updating user data
 export const updateUser = (data) => async (dispatch) => {
   try {
-    const res = await fetch(`${BASE_API_URL}/api/users/update`, {
+    const res = await fetch(`${BASE_API_URL}/users/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
