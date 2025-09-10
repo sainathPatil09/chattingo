@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx">
 </div>
 <div align="center">
-  <h3>🔗 <a href="https://72.60.111.17.nip.io/">Live Application</a> | 🎥 <a href="YOUR_VIDEO_URL_HERE">Demo Video</a> | 📖 <a href="YOUR_BLOG_URL_HERE">Technical Blog</a></h3>
+  <h3>🔗 <a href="https://72.60.111.17.nip.io/">Live Application</a> | 🎥 <a href="https://drive.google.com/file/d/1wIvIXvkbWz5M7ZjSQiz4rVkY3fpE1lmA/view?usp=sharing">Demo Video</a> | 📖 <a href="YOUR_BLOG_URL_HERE">Technical Blog</a></h3>
 </div>
 
 ---
@@ -400,5 +400,5 @@ This project was developed for the Mini Hackathon Challenge. Future contribution
 
 - 🌐 **Live Application:** [[LIVE_URL_HERE](https://72.60.111.17.nip.io/)]
 - 📁 **GitHub Repository:** [[REPO_URL_HERE](https://github.com/sainathPatil09/chattingo)]
-- 🎥 **Demo Video:** [YOUR_VIDEO_URL_HERE]
+- 🎥 **Demo Video:** [YOUR_VIDEO_URL_HERE](https://drive.google.com/file/d/1wIvIXvkbWz5M7ZjSQiz4rVkY3fpE1lmA/view?usp=sharing)
 - 📖 **Technical Blog:** [YOUR_BLOG_URL_HERE]
