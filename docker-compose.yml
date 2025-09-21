@@ -26,7 +26,7 @@ services:
     env_file:
       - ./backend/.env
     ports:
-      - "30800:8000"
+      - "30800:8080"
     depends_on:
       - db
 
